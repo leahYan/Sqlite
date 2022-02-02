@@ -16,6 +16,7 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -30,9 +31,10 @@ public class MainActivity extends AppCompatActivity {
     FloatingActionButton add_button;
     ImageView empty_imageview;
     TextView no_data;
+    private Button viewdata; //+
 
-    MyDatabaseHelper myDB;
-    ArrayList<String> book_id, book_title, book_author, book_pages;
+    MyDatabaseHelper myDB;  //initialise class object
+    ArrayList<String> book_id, book_title, book_author, book_pages; //contain string
     CustomAdapter customAdapter;
 
     @Override
@@ -43,6 +45,14 @@ public class MainActivity extends AppCompatActivity {
         recyclerView = findViewById(R.id.recyclerView);
         add_button = findViewById(R.id.add_button);
         empty_imageview = findViewById(R.id.empty_imageview);
+        viewdata = findViewById(R.id.Viewdata);
+        viewdata.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, ViewData.class);  //moving to a new screen
+                startActivity(intent);
+            }
+        });
         no_data = findViewById(R.id.no_data);
         add_button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -52,6 +62,8 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+
+        // Create an object of class Main (This will call the constructor)
         myDB = new MyDatabaseHelper(MainActivity.this);
         book_id = new ArrayList<>();
         book_title = new ArrayList<>();
