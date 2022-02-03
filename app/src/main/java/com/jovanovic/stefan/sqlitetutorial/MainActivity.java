@@ -110,7 +110,7 @@ public class MainActivity extends AppCompatActivity {
         inflater.inflate(R.menu.my_menu, menu);
         return super.onCreateOptionsMenu(menu);
     }
-
+/*
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if(item.getItemId() == R.id.delete_all){
@@ -142,4 +142,6 @@ public class MainActivity extends AppCompatActivity {
         });
         builder.create().show();
     }
+    */
 }
+

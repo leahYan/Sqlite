@@ -23,17 +23,17 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHold
 
     private Context context;
     private Activity activity;
-    private ArrayList book_id, book_title, book_author, book_pages;
+    private ArrayList sample_id, pulp_id, carton_id, box_id;
 
     //constructor
-    CustomAdapter(Activity activity, Context context, ArrayList book_id, ArrayList book_title, ArrayList book_author,
-                  ArrayList book_pages){
+    CustomAdapter(Activity activity, Context context, ArrayList sample_id, ArrayList pulp_id, ArrayList carton_id,
+                  ArrayList box_id){
         this.activity = activity;
         this.context = context;
-        this.book_id = book_id;
-        this.book_title = book_title;
-        this.book_author = book_author;
-        this.book_pages = book_pages;
+        this.sample_id = sample_id;
+        this.pulp_id = pulp_id;
+        this.carton_id = carton_id;
+        this.box_id = box_id;
     }
 
     @NonNull
@@ -47,19 +47,19 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHold
     @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
     public void onBindViewHolder(@NonNull final MyViewHolder holder, final int position) {
-        holder.book_id_txt.setText(String.valueOf(book_id.get(position)));
-        holder.book_title_txt.setText(String.valueOf(book_title.get(position)));
-        holder.book_author_txt.setText(String.valueOf(book_author.get(position)));
-        holder.book_pages_txt.setText(String.valueOf(book_pages.get(position)));
+        holder.sample_id_txt.setText(String.valueOf(sample_id.get(position)));
+        holder.pulp_id_txt.setText(String.valueOf(pulp_id.get(position)));
+        holder.carton_id_txt.setText(String.valueOf(carton_id.get(position)));
+        holder.box_id_txt.setText(String.valueOf(box_id.get(position)));
         //Recyclerview onClickListener
         holder.mainLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(context, UpdateActivity.class);
-                intent.putExtra("id", String.valueOf(book_id.get(position)));
-                intent.putExtra("title", String.valueOf(book_title.get(position)));
-                intent.putExtra("author", String.valueOf(book_author.get(position)));
-                intent.putExtra("pages", String.valueOf(book_pages.get(position)));
+                intent.putExtra("id", String.valueOf(sample_id.get(position)));
+                intent.putExtra("title", String.valueOf(pulp_id.get(position)));
+                intent.putExtra("author", String.valueOf(carton_id.get(position)));
+                intent.putExtra("pages", String.valueOf(box_id.get(position)));
                 activity.startActivityForResult(intent, 1);
             }
         });
@@ -69,20 +69,20 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHold
 
     @Override
     public int getItemCount() {
-        return book_id.size();
+        return sample_id.size();
     }
 
     class MyViewHolder extends RecyclerView.ViewHolder {
 
-        TextView book_id_txt, book_title_txt, book_author_txt, book_pages_txt;
+        TextView sample_id_txt, pulp_id_txt, carton_id_txt, box_id_txt;
         LinearLayout mainLayout;
 
         MyViewHolder(@NonNull View itemView) {
             super(itemView);
-            book_id_txt = itemView.findViewById(R.id.book_id_txt);
-            book_title_txt = itemView.findViewById(R.id.book_title_txt);
-            book_author_txt = itemView.findViewById(R.id.book_author_txt);
-            book_pages_txt = itemView.findViewById(R.id.book_pages_txt);
+            sample_id_txt = itemView.findViewById(R.id.sample_id_txt);
+            pulp_id_txt = itemView.findViewById(R.id.pulp_id_txt);
+            carton_id_txt = itemView.findViewById(R.id.carton_id_txt);
+            box_id_txt = itemView.findViewById(R.id.box_id_txt);
             mainLayout = itemView.findViewById(R.id.mainLayout);
             //Animate Recyclerview
             Animation translate_anim = AnimationUtils.loadAnimation(context, R.anim.translate_anim);

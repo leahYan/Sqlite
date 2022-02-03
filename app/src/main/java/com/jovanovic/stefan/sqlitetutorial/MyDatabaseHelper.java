@@ -17,9 +17,9 @@ class MyDatabaseHelper extends SQLiteOpenHelper {
 
     private static final String TABLE_NAME = "my_library";
     private static final String COLUMN_ID = "_id";
-    private static final String COLUMN_TITLE = "book_title";
-    private static final String COLUMN_AUTHOR = "book_author";
-    private static final String COLUMN_PAGES = "book_pages";
+    private static final String COLUMN_PULPID = "pulp_id";
+    private static final String COLUMN_CARTONID = "carton_id";
+    private static final String COLUMN_BOXID = "box_id";
 
     MyDatabaseHelper(@Nullable Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -30,9 +30,9 @@ class MyDatabaseHelper extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
         String query = "CREATE TABLE " + TABLE_NAME +
                         " (" + COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
-                        COLUMN_TITLE + " TEXT, " +
-                        COLUMN_AUTHOR + " TEXT, " +
-                        COLUMN_PAGES + " INTEGER);";
+                        COLUMN_PULPID + " TEXT, " +
+                        COLUMN_CARTONID + " TEXT, " +
+                        COLUMN_BOXID + " INTEGER);";
         db.execSQL(query);
     }
     @Override
@@ -41,13 +41,13 @@ class MyDatabaseHelper extends SQLiteOpenHelper {
         onCreate(db);
     }
 
-    void addBook(String title, String author, int pages){
+    void addBook(String pulp, String carton, int box){
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues cv = new ContentValues();
 
-        cv.put(COLUMN_TITLE, title);
-        cv.put(COLUMN_AUTHOR, author);
-        cv.put(COLUMN_PAGES, pages);
+        cv.put(COLUMN_PULPID, pulp);
+        cv.put(COLUMN_CARTONID, carton);
+        cv.put(COLUMN_BOXID, box);
         long result = db.insert(TABLE_NAME,null, cv);
         if(result == -1){
             Toast.makeText(context, "Failed", Toast.LENGTH_SHORT).show();
@@ -68,12 +68,12 @@ class MyDatabaseHelper extends SQLiteOpenHelper {
         return cursor;
     }
 
-    void updateData(String row_id, String title, String author, String pages){
+    void updateData(String row_id, String pulp, String carton, String box){
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues cv = new ContentValues();
-        cv.put(COLUMN_TITLE, title);
-        cv.put(COLUMN_AUTHOR, author);
-        cv.put(COLUMN_PAGES, pages);
+        cv.put(COLUMN_PULPID, pulp);
+        cv.put(COLUMN_CARTONID, carton);
+        cv.put(COLUMN_BOXID, box);
 
         long result = db.update(TABLE_NAME, cv, "_id=?", new String[]{row_id});
         if(result == -1){
