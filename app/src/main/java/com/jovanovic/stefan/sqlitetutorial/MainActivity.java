@@ -31,11 +31,11 @@ public class MainActivity extends AppCompatActivity {
     FloatingActionButton add_button;
     ImageView empty_imageview;
     TextView no_data;
-    private Button viewdata; //+
+    private Button viewdata; //+fg
 
     MyDatabaseHelper myDB;  //initialise class object
-    ArrayList<String> book_id, book_title, book_author, book_pages; //contain string
-    CustomAdapter customAdapter;
+    //ArrayList<String> book_id, book_title, book_author, book_pages; //contain string
+    //CustomAdapter customAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,7 +53,7 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-        no_data = findViewById(R.id.no_data);
+
         add_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -65,7 +65,7 @@ public class MainActivity extends AppCompatActivity {
 
         // Create an object of class Main (This will call the constructor)
         myDB = new MyDatabaseHelper(MainActivity.this);
-        book_id = new ArrayList<>();
+      /*  book_id = new ArrayList<>();
         book_title = new ArrayList<>();
         book_author = new ArrayList<>();
         book_pages = new ArrayList<>();
@@ -76,7 +76,7 @@ public class MainActivity extends AppCompatActivity {
                 book_pages);
         recyclerView.setAdapter(customAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(MainActivity.this));
-
+*/
     }
 
     @Override
@@ -86,7 +86,7 @@ public class MainActivity extends AppCompatActivity {
             recreate();
         }
     }
-
+/*
     void storeDataInArrays(){
         Cursor cursor = myDB.readAllData();
         if(cursor.getCount() == 0){
@@ -103,7 +103,7 @@ public class MainActivity extends AppCompatActivity {
             no_data.setVisibility(View.GONE);
         }
     }
-
+*/
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();

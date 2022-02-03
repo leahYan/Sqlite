@@ -11,17 +11,18 @@
         android:theme="@style/AppTheme">
         <activity
             android:name=".ViewData"
-            android:exported="false" />
-        <activity
-            android:name=".UpdateActivity"
+            android:exported="false"
             android:parentActivityName=".MainActivity" />
         <activity
+            android:name=".UpdateActivity"
+            android:parentActivityName=".ViewData" />
+        <activity
             android:name=".AddActivity"
-            android:label="Add Book"
+            android:label="Add Sample"
             android:parentActivityName=".MainActivity" />
         <activity
             android:name=".MainActivity"
-            android:label="Book Library">
+            android:label="SamStore">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <action android:name="android.intent.action.VIEW" />

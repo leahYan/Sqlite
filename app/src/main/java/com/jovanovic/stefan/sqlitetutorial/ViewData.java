@@ -26,9 +26,10 @@ public class ViewData extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_data);
-        recyclerView = findViewById(R.id.recyclerView2);
-        empty_imageview2 = findViewById(R.id.empty_imageview2);
+       recyclerView = findViewById(R.id.recyclerView2);
         no_data2 = findViewById(R.id.no_data2);
+        empty_imageview2 = findViewById(R.id.empty_imageview2);
+
 
         // Create an object of class Main (This will call the constructor)
         myDB = new MyDatabaseHelper(ViewData.this);
