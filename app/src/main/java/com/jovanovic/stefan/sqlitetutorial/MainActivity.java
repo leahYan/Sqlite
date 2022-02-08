@@ -10,6 +10,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.icu.text.SimpleDateFormat;
 import android.os.Bundle;
 import android.view.ContextMenu;
 import android.view.Menu;
@@ -20,9 +21,13 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.provider.Settings;
+import android.provider.Settings.System;
+
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
@@ -31,11 +36,12 @@ public class MainActivity extends AppCompatActivity {
     FloatingActionButton add_button;
     ImageView empty_imageview;
     TextView no_data;
-    private Button viewdata; //+fg
+    private Button viewdata;
 
     MyDatabaseHelper myDB;  //initialise class object
-    //ArrayList<String> book_id, book_title, book_author, book_pages; //contain string
+
     //CustomAdapter customAdapter;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,37 +52,19 @@ public class MainActivity extends AppCompatActivity {
         add_button = findViewById(R.id.add_button);
         empty_imageview = findViewById(R.id.empty_imageview);
         viewdata = findViewById(R.id.Viewdata);
-        viewdata.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, ViewData.class);  //moving to a new screen
-                startActivity(intent);
-            }
+        viewdata.setOnClickListener(v -> {
+            Intent intent = new Intent(MainActivity.this, ViewData.class);  //moving to a new screen
+            startActivity(intent);
         });
 
-        add_button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(MainActivity.this, AddActivity.class);
-                startActivity(intent);
-            }
+        add_button.setOnClickListener(view -> {
+            Intent intent = new Intent(MainActivity.this, AddActivity.class);
+            startActivity(intent);
         });
-
 
         // Create an object of class Main (This will call the constructor)
         myDB = new MyDatabaseHelper(MainActivity.this);
-      /*  book_id = new ArrayList<>();
-        book_title = new ArrayList<>();
-        book_author = new ArrayList<>();
-        book_pages = new ArrayList<>();
 
-        storeDataInArrays();
-
-        customAdapter = new CustomAdapter(MainActivity.this,this, book_id, book_title, book_author,
-                book_pages);
-        recyclerView.setAdapter(customAdapter);
-        recyclerView.setLayoutManager(new LinearLayoutManager(MainActivity.this));
-*/
     }
 
     @Override
@@ -86,62 +74,25 @@ public class MainActivity extends AppCompatActivity {
             recreate();
         }
     }
-/*
-    void storeDataInArrays(){
-        Cursor cursor = myDB.readAllData();
-        if(cursor.getCount() == 0){
-            empty_imageview.setVisibility(View.VISIBLE);
-            no_data.setVisibility(View.VISIBLE);
-        }else{
-            while (cursor.moveToNext()){
-                book_id.add(cursor.getString(0));
-                book_title.add(cursor.getString(1));
-                book_author.add(cursor.getString(2));
-                book_pages.add(cursor.getString(3));
-            }
-            empty_imageview.setVisibility(View.GONE);
-            no_data.setVisibility(View.GONE);
-        }
-    }
-*/
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.my_menu, menu);
-        return super.onCreateOptionsMenu(menu);
+        return true;
     }
-/*
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        if(item.getItemId() == R.id.delete_all){
-            confirmDialog();
+        // Handle item selection
+        if (item.getItemId() == R.id.senddata) {
+            Intent i = new Intent(MainActivity.this, SenddataActivity.class);
+            this.startActivity(i);
+            return true;
         }
         return super.onOptionsItemSelected(item);
     }
 
-    void confirmDialog(){
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle("Delete All?");
-        builder.setMessage("Are you sure you want to delete all Data?");
-        builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialogInterface, int i) {
-                MyDatabaseHelper myDB = new MyDatabaseHelper(MainActivity.this);
-                myDB.deleteAllData();
-                //Refresh Activity
-                Intent intent = new Intent(MainActivity.this, MainActivity.class);
-                startActivity(intent);
-                finish();
-            }
-        });
-        builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialogInterface, int i) {
 
-            }
-        });
-        builder.create().show();
-    }
-    */
 }
 

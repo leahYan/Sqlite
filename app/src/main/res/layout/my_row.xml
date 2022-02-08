@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -23,31 +22,36 @@
                 android:id="@+id/sample_id_txt"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="15dp"
+                android:layout_marginLeft="15dp"
                 android:text="1"
+                android:textColor="#000"
                 android:textSize="40sp"
                 android:textStyle="bold"
-                android:textColor="#000"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.153" />
 
             <TextView
                 android:id="@+id/pulp_id_txt"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginLeft="16dp"
+                android:layout_marginStart="15dp"
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="8dp"
                 android:text="Title 1"
+                android:textColor="#000"
                 android:textSize="20sp"
                 android:textStyle="bold"
-                android:textColor="#000"
-                app:layout_constraintStart_toEndOf="@+id/sample_id_txt"
-                app:layout_constraintTop_toTopOf="@+id/sample_id_txt" />
+                app:layout_constraintStart_toEndOf="@+id/TextPulp"
+                app:layout_constraintTop_toTopOf="@+id/TextPulp" />
 
             <TextView
                 android:id="@+id/carton_id_txt"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
                 android:text="Author1"
                 app:layout_constraintStart_toStartOf="@+id/pulp_id_txt"
                 app:layout_constraintTop_toBottomOf="@+id/pulp_id_txt" />
@@ -56,10 +60,23 @@
                 android:id="@+id/box_id_txt"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginEnd="156dp"
+                android:layout_marginRight="156dp"
                 android:text="120"
-                android:textSize="18sp"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="@+id/carton_id_txt" />
+
+            <EditText
+                android:id="@+id/TextPulp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="50dp"
+                android:layout_marginLeft="50dp"
+                android:inputType="textPersonName"
+                android:text="Pulp ID"
+                app:layout_constraintStart_toStartOf="parent"
+                tools:layout_editor_absoluteY="-15dp"
+                tools:ignore="MissingConstraints" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>
 </LinearLayout>

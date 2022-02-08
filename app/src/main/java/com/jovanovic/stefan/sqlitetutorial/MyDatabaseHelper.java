@@ -12,10 +12,10 @@ import androidx.annotation.Nullable;
 class MyDatabaseHelper extends SQLiteOpenHelper {
 
     private Context context;
-    private static final String DATABASE_NAME = "BookLibrary.db";
+    private static final String DATABASE_NAME = "Sample.db";
     private static final int DATABASE_VERSION = 1;
 
-    private static final String TABLE_NAME = "my_library";
+    private static final String TABLE_NAME = "my_samples";
     private static final String COLUMN_ID = "_id";
     private static final String COLUMN_PULPID = "pulp_id";
     private static final String COLUMN_CARTONID = "carton_id";
@@ -50,7 +50,7 @@ class MyDatabaseHelper extends SQLiteOpenHelper {
         cv.put(COLUMN_BOXID, box);
         long result = db.insert(TABLE_NAME,null, cv);
         if(result == -1){
-            Toast.makeText(context, "Failed", Toast.LENGTH_SHORT).show();
+            Toast.makeText(context, carton, Toast.LENGTH_SHORT).show();
         }else {
             Toast.makeText(context, "Added Successfully!", Toast.LENGTH_SHORT).show();
         }

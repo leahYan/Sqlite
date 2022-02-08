@@ -10,6 +10,11 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
+            android:name=".SenddataActivity"
+            android:exported="false"
+            android:label="Send data by email"
+            android:parentActivityName=".MainActivity" />
+        <activity
             android:name=".ViewData"
             android:exported="false"
             android:parentActivityName=".MainActivity" />

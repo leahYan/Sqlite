@@ -65,7 +65,7 @@ public class ViewData extends AppCompatActivity {
             no_data2.setVisibility(View.GONE);
         }
     }
-
+/*
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == R.id.delete_all) {
@@ -98,4 +98,6 @@ public class ViewData extends AppCompatActivity {
         builder.create().show();
 
     }
+
+ */
 }

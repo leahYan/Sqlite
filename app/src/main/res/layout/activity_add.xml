@@ -8,40 +8,40 @@
     android:padding="30dp">
 
     <EditText
-        android:id="@+id/title_input"
+        android:id="@+id/pulp_input"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="150dp"
         android:ems="10"
-        android:hint="Book Title"
+        android:hint="Pulp ID"
         android:inputType="textPersonName"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/author_input"
+        android:id="@+id/carton_input"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:ems="10"
-        android:hint="Book Author"
+        android:hint="Carton ID"
         android:inputType="textPersonName"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/title_input" />
+        app:layout_constraintTop_toBottomOf="@+id/pulp_input" />
 
     <EditText
-        android:id="@+id/pages_input"
+        android:id="@+id/box_input"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:ems="10"
-        android:hint="Number of pages"
+        android:hint="Box ID"
         android:inputType="number"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/author_input" />
+        app:layout_constraintTop_toBottomOf="@+id/carton_input" />
 
     <Button
         android:id="@+id/add_button"
@@ -53,5 +53,5 @@
         android:textAllCaps="false"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/pages_input" />
+        app:layout_constraintTop_toBottomOf="@+id/box_input" />
 </androidx.constraintlayout.widget.ConstraintLayout>
