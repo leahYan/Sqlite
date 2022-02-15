@@ -1,3 +1,12 @@
 <resources>
     <string name="app_name">SamStore</string>
+
+
+<string-array name="usernames">
+    <item>Leah</item>
+    <item>Mel</item>
+    <item>Clint</item>
+    <item>Morgan</item>
+    <item>Niki</item>
+</string-array>
 </resources>

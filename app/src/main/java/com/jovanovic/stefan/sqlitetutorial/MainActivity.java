@@ -23,6 +23,11 @@ import android.widget.TextView;
 import android.widget.Toast;
 import android.provider.Settings;
 import android.provider.Settings.System;
+import androidx.appcompat.app.AppCompatActivity;
+import android.os.Bundle;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.Spinner;
 
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -37,6 +42,7 @@ public class MainActivity extends AppCompatActivity {
     ImageView empty_imageview;
     TextView no_data;
     private Button viewdata;
+    Spinner spinnerUsers;
 
     MyDatabaseHelper myDB;  //initialise class object
 
@@ -47,6 +53,13 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        //user list for login
+        spinnerUsers = findViewById(R.id.spinner_user);
+        ArrayAdapter<CharSequence>adapter=ArrayAdapter.createFromResource(this, R.array.usernames, android.R.layout.simple_spinner_item);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_item);
+        spinnerUsers.setAdapter(adapter);
+
 
         recyclerView = findViewById(R.id.recyclerView);
         add_button = findViewById(R.id.add_button);

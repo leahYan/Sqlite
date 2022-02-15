@@ -48,6 +48,7 @@
         android:layout_width="match_parent"
         android:layout_height="70dp"
         android:layout_marginTop="40dp"
+        android:background="#FF808090"
         android:text="Add"
         android:textSize="20sp"
         android:textAllCaps="false"
