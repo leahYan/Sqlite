@@ -68,6 +68,17 @@ class MyDatabaseHelper extends SQLiteOpenHelper {
         return cursor;
     }
 
+
+    Cursor searchContacts(String id, SQLiteDatabase sqLiteDatabase){
+        Cursor cursor;
+        String column[] = {COLUMN_PULPID,COLUMN_CARTONID};
+        String searchQry = COLUMN_BOXID + " LIKE ?";
+        String string[] = {id};
+        cursor = sqLiteDatabase.query(TABLE_NAME,column,searchQry,string,null,null,null);
+
+        return cursor;
+    }
+
     void updateData(String row_id, String pulp, String carton, String box){
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues cv = new ContentValues();

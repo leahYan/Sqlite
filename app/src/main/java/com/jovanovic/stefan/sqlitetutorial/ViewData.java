@@ -1,19 +1,28 @@
 package com.jovanovic.stefan.sqlitetutorial;
 
-import androidx.appcompat.app.AlertDialog;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
-
+import android.content.Intent;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
+//import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Toast;
 import java.util.ArrayList;
 
 public class ViewData extends AppCompatActivity {
@@ -24,6 +33,12 @@ public class ViewData extends AppCompatActivity {
     ImageView empty_imageview2;
     CustomAdapter customAdapter2;
 
+    EditText searchPulp, searchCarton, searchBox;
+    Button searchButton;
+    SQLiteDatabase sqLiteDatabase;
+    Cursor cursor;
+    String NAME;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,7 +47,10 @@ public class ViewData extends AppCompatActivity {
         recyclerView = findViewById(R.id.recyclerView2);
         no_data2 = findViewById(R.id.no_data2);
         empty_imageview2 = findViewById(R.id.empty_imageview2);
-
+        searchPulp = (EditText) findViewById(R.id.search_pulp);
+        searchCarton = (EditText) findViewById(R.id.search_carton);
+        searchBox = (EditText) findViewById(R.id.search_box);
+        searchButton = (Button) findViewById(R.id.searchButton);
 
         // Create an object of class Main (This will call the constructor)
         myDB = new MyDatabaseHelper(ViewData.this);
@@ -47,6 +65,33 @@ public class ViewData extends AppCompatActivity {
                 box_id);
         recyclerView.setAdapter(customAdapter2);
         recyclerView.setLayoutManager(new LinearLayoutManager(ViewData.this));
+
+        searchPulp = (EditText) findViewById(R.id.search_pulp);
+        searchCarton = (EditText) findViewById(R.id.search_carton);
+        searchBox = (EditText) findViewById(R.id.search_box);
+        searchButton = (Button) findViewById(R.id.searchButton);
+        //search
+        searchButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                NAME = searchBox.getText().toString();
+                sqLiteDatabase = myDB.getReadableDatabase();
+                cursor = myDB.searchContacts(NAME,sqLiteDatabase);
+                if(NAME.length()>0) {
+                    if (cursor.moveToFirst()) {
+                        do {
+                            String pulp, carton;
+                            pulp = cursor.getString(0);
+                            carton = cursor.getString(1);
+
+                            searchPulp.setText(pulp);
+                            searchCarton.setText(carton);
+
+                        } while (cursor.moveToNext());
+                    }
+                }
+            }
+        });
     }
 
     void storeDataInArrays2() {
@@ -64,6 +109,15 @@ public class ViewData extends AppCompatActivity {
             empty_imageview2.setVisibility(View.GONE);
             no_data2.setVisibility(View.GONE);
         }
+    }
+
+
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.my_menu, menu);
+        return true;
     }
 /*
     @Override

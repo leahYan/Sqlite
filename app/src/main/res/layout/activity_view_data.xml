@@ -6,21 +6,31 @@
     android:layout_height="match_parent"
     tools:context=".ViewData">
 
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/recyclerView2"
+        app:layout_constraintTop_toBottomOf="@+id/searchButton"
+        >
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView2"
         android:layout_width="409dp"
         android:layout_height="729dp"
+        android:layout_marginTop="10dp"
         android:paddingTop="?attr/actionBarSize"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="@+id/searchButton"
+        app:layout_constraintTop_toBottomOf="@+id/searchButton"
 
+     />
+    </ScrollView>
     <ImageView
         android:id="@+id/empty_imageview2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="230dp"
+        android:layout_marginTop="260dp"
         android:alpha="0.1"
         android:visibility="gone"
         app:layout_constraintEnd_toEndOf="parent"
@@ -40,5 +50,50 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/empty_imageview2" />
+
+
+
+    <EditText
+        android:id="@+id/search_pulp"
+        android:layout_width="160dp"
+        android:layout_height="wrap_content"
+        android:hint="pulpID"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:layout_editor_absoluteY="62dp"
+        tools:ignore="MissingConstraints" />
+
+
+    <EditText
+        android:id="@+id/search_carton"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:hint="cartonID"
+        app:layout_constraintStart_toEndOf="@+id/search_pulp"
+        tools:layout_editor_absoluteX="160dp"
+        tools:layout_editor_absoluteY="62dp"
+        tools:ignore="MissingConstraints" />
+
+    <EditText
+        android:id="@+id/search_box"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:hint="boxID"
+        app:layout_constraintStart_toEndOf="@+id/search_carton"
+        tools:layout_editor_absoluteX="310dp"
+        tools:layout_editor_absoluteY="62dp"
+        tools:ignore="MissingConstraints" />
+
+    <Button
+        android:id="@+id/searchButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="Search"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/search_box"
+        tools:ignore="MissingConstraints" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
