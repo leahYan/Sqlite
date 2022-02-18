@@ -14,6 +14,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
+import java.nio.channels.FileChannel;
 
 public class SenddataActivity extends AppCompatActivity {
 
@@ -33,37 +34,63 @@ public class SenddataActivity extends AppCompatActivity {
         eMsg = findViewById(R.id.txtMsg);
         btn = findViewById(R.id.btnSend);
         btn.setOnClickListener(new View.OnClickListener() {
+//?
             @Override
             public void onClick(View v) {
                 Intent it = new Intent(Intent.ACTION_SEND);
 
                 sqLiteDatabase = myDB.getReadableDatabase();
-
-                copyFileToExternal("Sample.db");
+                exportDatabse("Sample.db");
+                //copyFileToExternal("Sample.db");
                 sendEmail("RTAData@Riotinto.com");
-/*
-                File root = Environment.getExternalStorageDirectory();
-                String fileName = "Sample.db";
-                if (root.canWrite()) {
-                    attachment = new File(root, fileName);
-                }
+            /*
+                            File root = Environment.getExternalStorageDirectory();
+                            String fileName = "Sample.db";
+                            if (root.canWrite()) {
+                                attachment = new File(root, fileName);
+                            }
 
-                it.setData(Uri.parse("mailto:")); // only email apps should handle this
-                it.putExtra(Intent.EXTRA_EMAIL, new String[]{"RTAData@Riotinto.com"});
-                it.putExtra(Intent.EXTRA_SUBJECT,"Test email");
-                it.putExtra(Intent.EXTRA_TEXT,eMsg.getText());
-                //it.putExtra(Intent.EXTRA_STREAM,Uri.fromFile(sqLiteDatabase));
-                it.putExtra(Intent.EXTRA_STREAM, Uri.fromFile(attachment));
+                            it.setData(Uri.parse("mailto:")); // only email apps should handle this
+                            it.putExtra(Intent.EXTRA_EMAIL, new String[]{"RTAData@Riotinto.com"});
+                            it.putExtra(Intent.EXTRA_SUBJECT,"Test email");
+                            it.putExtra(Intent.EXTRA_TEXT,eMsg.getText());
+                            //it.putExtra(Intent.EXTRA_STREAM,Uri.fromFile(sqLiteDatabase));
+                            it.putExtra(Intent.EXTRA_STREAM, Uri.fromFile(attachment));
 
-                //it.setType("message/rfc822");
-                startActivity(Intent.createChooser(it,"Choose Mail App"));
-                */
+                            //it.setType("message/rfc822");
+                            startActivity(Intent.createChooser(it,"Choose Mail App"));
+*/
 
             }
         });
+    }
+    public void exportDatabse(String databaseName) {
+
+        try {
+            File sd = Environment.getExternalStorageDirectory();
+            File data = Environment.getDataDirectory();
+
+            if (sd.canWrite()) {
+                String currentDBPath = "//data//" + getPackageName() + "//databases//" +databaseName+ "";
+                String backupDBPath = "backupname.db";
+                File currentDB = new File(data, currentDBPath);
+                File backupDB = new File(sd, backupDBPath);
+
+                if (currentDB.exists()) {
+                    FileChannel src = new FileInputStream(currentDB).getChannel();
+                    FileChannel dst = new FileOutputStream(backupDB).getChannel();
+                    dst.transferFrom(src, 0, src.size());
+                    src.close();
+                    dst.close();
+                }else{
+                    System.out.println(":::");
+                }
+            }
+        } catch (Throwable e) {
+            e.printStackTrace();
+        }
 
     }
-
 
     private  File copyFileToExternal(String fileName) {
         File file = null;

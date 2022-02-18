@@ -25,6 +25,7 @@
                 android:layout_marginStart="8dp"
                 android:layout_marginLeft="8dp"
                 android:text="1"
+                android:clickable="false"
                 android:textColor="#F7191818"
                 android:textSize="30sp"
                 android:textStyle="bold"

@@ -1,6 +1,8 @@
 package com.jovanovic.stefan.sqlitetutorial;
 
 
+import static android.os.Build.ID;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -29,11 +31,12 @@ public class ViewData extends AppCompatActivity {
     RecyclerView recyclerView;
     TextView no_data2;
     MyDatabaseHelper myDB;  //initialise class object
-    ArrayList<String> sample_id, pulp_id, carton_id, box_id; //contain string
+    ArrayList<String> sample_id, pulp_id, carton_id, box_id,sample_searchid,searchpulp_id, searchcarton_id, searchbox_id;
+    ; //contain string
     ImageView empty_imageview2;
     CustomAdapter customAdapter2;
 
-    EditText searchPulp, searchCarton, searchBox;
+    EditText searchID,searchPulp, searchCarton, searchBox;
     Button searchButton;
     SQLiteDatabase sqLiteDatabase;
     Cursor cursor;
@@ -47,6 +50,8 @@ public class ViewData extends AppCompatActivity {
         recyclerView = findViewById(R.id.recyclerView2);
         no_data2 = findViewById(R.id.no_data2);
         empty_imageview2 = findViewById(R.id.empty_imageview2);
+
+        //search
         searchPulp = (EditText) findViewById(R.id.search_pulp);
         searchCarton = (EditText) findViewById(R.id.search_carton);
         searchBox = (EditText) findViewById(R.id.search_box);
@@ -55,21 +60,15 @@ public class ViewData extends AppCompatActivity {
         // Create an object of class Main (This will call the constructor)
         myDB = new MyDatabaseHelper(ViewData.this);
         sample_id = new ArrayList<>();
+        sample_searchid = new ArrayList<>();
         pulp_id = new ArrayList<>();
         carton_id = new ArrayList<>();
         box_id = new ArrayList<>();
 
         storeDataInArrays2();
 
-        customAdapter2 = new CustomAdapter(ViewData.this, this, sample_id, pulp_id, carton_id,
-                box_id);
         recyclerView.setAdapter(customAdapter2);
         recyclerView.setLayoutManager(new LinearLayoutManager(ViewData.this));
-
-        searchPulp = (EditText) findViewById(R.id.search_pulp);
-        searchCarton = (EditText) findViewById(R.id.search_carton);
-        searchBox = (EditText) findViewById(R.id.search_box);
-        searchButton = (Button) findViewById(R.id.searchButton);
         //search
         searchButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -80,18 +79,35 @@ public class ViewData extends AppCompatActivity {
                 if(NAME.length()>0) {
                     if (cursor.moveToFirst()) {
                         do {
-                            String pulp, carton;
-                            pulp = cursor.getString(0);
-                            carton = cursor.getString(1);
+                            String ID,pulp, carton;
+                            ID = cursor.getString(0);
+                            pulp = cursor.getString(1);
+                            carton = cursor.getString(2);
 
-                            searchPulp.setText(pulp);
-                            searchCarton.setText(carton);
-
+                            sample_searchid.add(ID);
+                            searchpulp_id.add(pulp);
+                            searchcarton_id.add(carton);
+                            searchbox_id.add(NAME);
                         } while (cursor.moveToNext());
+
+                        customAdapter2 = new CustomAdapter(ViewData.this, this, sample_searchid, searchpulp_id, searchcarton_id, searchbox_id);
                     }
+                }
+                else{
+                    customAdapter2 = new CustomAdapter(ViewData.this, this, sample_id, pulp_id, carton_id, box_id);
                 }
             }
         });
+ /* if (sample_searchid.isEmpty()) {
+            customAdapter2 = new CustomAdapter(ViewData.this, this, sample_id, pulp_id, carton_id, box_id);
+        }
+        else{
+            customAdapter2 = new CustomAdapter(ViewData.this, this, sample_searchid, searchpulp_id, searchcarton_id, searchbox_id);
+          //  searchID.setText(00);
+           // searchPulp.setText(00);
+           // searchCarton.setText(00);
+        }
+*/
     }
 
     void storeDataInArrays2() {
