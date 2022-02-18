@@ -6,4 +6,6 @@
     <color name="red">#E94252</color>
     <color name="pink">#3F2769</color>
     <color name="white">#FDFAFA</color>
+    <color name="buttonColor">#0F9D58</color>
+    <color name="textColor">#FFFFFF</color>
 </resources>
