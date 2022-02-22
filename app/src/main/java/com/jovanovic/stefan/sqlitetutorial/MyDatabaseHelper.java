@@ -19,6 +19,8 @@ class MyDatabaseHelper extends SQLiteOpenHelper {
     private static final String COLUMN_ID = "_id";
     private static final String COLUMN_PULPID = "pulp_id";
     private static final String COLUMN_CARTONID = "carton_id";
+
+
     private static final String COLUMN_BOXID = "box_id";
 
     MyDatabaseHelper(@Nullable Context context) {
@@ -82,8 +84,10 @@ class MyDatabaseHelper extends SQLiteOpenHelper {
     void updateData(String row_id, String pulp, String carton, String box){
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues cv = new ContentValues();
-        cv.put(COLUMN_PULPID, pulp);
+       cv.put(COLUMN_PULPID, pulp);
         cv.put(COLUMN_CARTONID, carton);
+
+
         cv.put(COLUMN_BOXID, box);
 
         long result = db.update(TABLE_NAME, cv, "_id=?", new String[]{row_id});

@@ -4,6 +4,7 @@ package com.jovanovic.stefan.sqlitetutorial;
 import static android.os.Build.ID;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.SearchView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -26,13 +27,20 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 import java.util.ArrayList;
+import java.util.List;
+import androidx.recyclerview.widget.DividerItemDecoration;
 
 public class ViewData extends AppCompatActivity {
     RecyclerView recyclerView;
+    RecyclerView.LayoutManager mLayoutManager;
     TextView no_data2;
     MyDatabaseHelper myDB;  //initialise class object
+<<<<<<< Updated upstream
     ArrayList<String> sample_id, pulp_id, carton_id, box_id,sample_searchid,searchpulp_id, searchcarton_id, searchbox_id;
     ; //contain string
+=======
+    List<String> sample_id, pulp_id, carton_id, box_id, sample_searchid, searchpulp_id, searchcarton_id, searchbox_id,sampleList; //contain string
+>>>>>>> Stashed changes
     ImageView empty_imageview2;
     CustomAdapter customAdapter2;
 
@@ -43,19 +51,24 @@ public class ViewData extends AppCompatActivity {
     String NAME;
 
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_data);
         recyclerView = findViewById(R.id.recyclerView2);
+
         no_data2 = findViewById(R.id.no_data2);
         empty_imageview2 = findViewById(R.id.empty_imageview2);
+<<<<<<< Updated upstream
 
         //search
         searchPulp = (EditText) findViewById(R.id.search_pulp);
         searchCarton = (EditText) findViewById(R.id.search_carton);
         searchBox = (EditText) findViewById(R.id.search_box);
         searchButton = (Button) findViewById(R.id.searchButton);
+=======
+>>>>>>> Stashed changes
 
         // Create an object of class Main (This will call the constructor)
         myDB = new MyDatabaseHelper(ViewData.this);
@@ -64,11 +77,40 @@ public class ViewData extends AppCompatActivity {
         pulp_id = new ArrayList<>();
         carton_id = new ArrayList<>();
         box_id = new ArrayList<>();
+        sampleList = new ArrayList<>();
 
-        storeDataInArrays2();
 
+<<<<<<< Updated upstream
         recyclerView.setAdapter(customAdapter2);
         recyclerView.setLayoutManager(new LinearLayoutManager(ViewData.this));
+=======
+        customAdapter2 = new CustomAdapter(ViewData.this, this, sample_id, pulp_id, carton_id, box_id);
+        recyclerView.setAdapter(customAdapter2);
+        recyclerView.setLayoutManager(new LinearLayoutManager(ViewData.this));
+
+        DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(this, DividerItemDecoration.VERTICAL);
+        recyclerView.addItemDecoration(dividerItemDecoration);
+        storeDataInArrays();
+/*
+        sample_id.add("s1");
+        pulp_id.add("p1");
+        carton_id.add("c1");
+        box_id.add("1");
+        sample_id.add("s1");
+        pulp_id.add("p2");
+        carton_id.add("c2");
+        box_id.add("2");
+
+ */
+
+        //search
+        searchPulp = (EditText) findViewById(R.id.search_pulp);
+        searchCarton = (EditText) findViewById(R.id.search_carton);
+        searchBox = (EditText) findViewById(R.id.search_box);
+        searchButton = (Button) findViewById(R.id.searchButton);
+
+
+>>>>>>> Stashed changes
         //search
         searchButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -81,13 +123,26 @@ public class ViewData extends AppCompatActivity {
                         do {
                             String ID,pulp, carton;
                             ID = cursor.getString(0);
+<<<<<<< Updated upstream
                             pulp = cursor.getString(1);
                             carton = cursor.getString(2);
 
+=======
+                            pulp = cursor.getString(0);
+                            carton = cursor.getString(1);
+
+                            searchPulp.setText(pulp);
+                            searchCarton.setText(carton);
+>>>>>>> Stashed changes
                             sample_searchid.add(ID);
                             searchpulp_id.add(pulp);
                             searchcarton_id.add(carton);
                             searchbox_id.add(NAME);
+<<<<<<< Updated upstream
+=======
+
+
+>>>>>>> Stashed changes
                         } while (cursor.moveToNext());
 
                         customAdapter2 = new CustomAdapter(ViewData.this, this, sample_searchid, searchpulp_id, searchcarton_id, searchbox_id);
@@ -110,7 +165,7 @@ public class ViewData extends AppCompatActivity {
 */
     }
 
-    void storeDataInArrays2() {
+    void storeDataInArrays() {
         Cursor cursor = myDB.readAllData();
         if (cursor.getCount() == 0) {
             empty_imageview2.setVisibility(View.VISIBLE);
@@ -127,14 +182,27 @@ public class ViewData extends AppCompatActivity {
         }
     }
 
-
-
     @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.my_menu, menu);
-        return true;
+    public boolean onCreateOptionsMenu(Menu menu ){
+        getMenuInflater().inflate(R.menu.my_menu, menu);
+        MenuItem item = menu.findItem(R.id.action_search);
+        SearchView searchView = (SearchView) item.getActionView();
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                customAdapter2.getFilter().filter(newText);
+                return true;
+            }
+        });
+        return true; // super.onCreateOptionsMenu(menu);
     }
+}
 /*
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -170,4 +238,3 @@ public class ViewData extends AppCompatActivity {
     }
 
  */
-}
