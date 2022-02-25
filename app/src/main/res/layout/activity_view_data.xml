@@ -17,12 +17,11 @@
         android:id="@+id/recyclerView2"
         android:layout_width="409dp"
         android:layout_height="729dp"
-        android:layout_marginTop="10dp"
         android:paddingTop="?attr/actionBarSize"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/searchButton"
-        app:layout_constraintTop_toBottomOf="@+id/searchButton"
+        app:layout_constraintTop_toTopOf="@+id/searchfield_carton"
+        app:layout_constraintTop_toBottomOf="@+id/searchfield_carton"
 
      />
     </ScrollView>
@@ -77,6 +76,7 @@
 
     </RadioGroup>
 
+    <!--
     <EditText
         android:id="@+id/search_pulp"
         android:layout_width="160dp"
@@ -119,5 +119,5 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/search_box"
         tools:ignore="MissingConstraints" />
-
+-->
 </androidx.constraintlayout.widget.ConstraintLayout>

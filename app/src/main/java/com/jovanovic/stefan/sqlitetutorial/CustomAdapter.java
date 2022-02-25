@@ -25,7 +25,7 @@ import java.util.List;
 
 public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHolder> implements Filterable {
 
-    private static final String TAG = "CustomAdapter";
+    //private static final String TAG = "CustomAdapter";
     private Context context;
     private Activity activity;
     List<String> sample_id;
@@ -48,7 +48,6 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHold
         this.sampleListAll = new ArrayList<>(box_id);
     }
 
-
     @NonNull
     @Override
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -56,7 +55,6 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHold
         View view = inflater.inflate(R.layout.my_row, parent, false);
         return new MyViewHolder(view);
     }
-
 
     @SuppressLint("RecyclerView")
     @RequiresApi(api = Build.VERSION_CODES.M)
@@ -86,7 +84,6 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHold
                 activity.startActivityForResult(intent, 1);
             }
         });
-
 
     }
 
@@ -121,9 +118,7 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHold
                         System.out.println("searchid"+charSequence.toString().toLowerCase());
                         System.out.println("not match");
                     }
-
                 }
-
                 //box_id.clear();
                 //box_id.addAll((Collection<? extends String>) filterResults.values);
                 filterResults.values = filteredList;
@@ -133,11 +128,8 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHold
                 System.out.println("boxsize->"+box_id.size());
                 System.out.println("SLsize->"+sampleListAll.size());
             } else {
-
-
                 System.out.println("not match2");
             }
-
 
             return filterResults;
         }
@@ -149,18 +141,14 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHold
                System.out.println("DataSetChanged");
                notifyDataSetChanged();
            }
-
         }
         ////// //run on a ui thread
-
     };
-
 
     class MyViewHolder extends RecyclerView.ViewHolder {
 
         TextView sample_id_txt, pulp_id_txt, carton_id_txt, box_id_txt;
         LinearLayout mainLayout;
-
 
         MyViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -183,8 +171,5 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHold
                 }
             });
         }
-
     }
-
-
 }
