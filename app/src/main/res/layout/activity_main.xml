@@ -61,18 +61,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/empty_imageview" />
 
-    <Button
-        android:id="@+id/Adddata"
-        android:layout_width="250dp"
-        android:layout_height="60dp"
-        android:text="View Data"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.478"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.424"
-        tools:ignore="MissingConstraints" />
 
     <Button
         android:id="@+id/Viewdata"
@@ -81,28 +69,30 @@
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginEnd="2dp"
-        android:layout_marginRight="200dp"
-        android:layout_marginBottom="243dp"
+        android:layout_marginStart="80dp"
+        android:layout_marginLeft="80dp"
         android:text="View Data"
-        tools:ignore="MissingConstraints" />
+        app:layout_constraintStart_toStartOf="parent"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteY="151dp" />
 
     <androidx.cardview.widget.CardView
         android:layout_width="301dp"
-        android:layout_height="607dp"
-        android:layout_marginStart="10dp"
-        android:layout_marginLeft="10dp"
+        android:layout_height="288dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="250dp"
         android:layout_marginEnd="10dp"
-        android:layout_marginRight="10dp"
+        app:cardCornerRadius="25dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.437"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:cardCornerRadius = "25dp">
+        app:layout_constraintVertical_bias="0.269">
 
         <RelativeLayout
             android:layout_width="278dp"
-            android:layout_height="600dp"
+            android:layout_height="406dp"
             android:gravity="center_horizontal">
 
             <TextView
@@ -132,7 +122,7 @@
                 android:layout_alignParentRight="true"
                 android:layout_marginStart="39dp"
                 android:layout_marginLeft="39dp"
-                android:layout_marginTop="183dp"
+                android:layout_marginTop="100dp"
                 android:layout_marginEnd="39dp"
                 android:layout_marginRight="39dp"
                 android:background="@drawable/edit_test_bg"
@@ -146,7 +136,7 @@
                 android:layout_alignParentTop="true"
                 android:layout_alignParentEnd="true"
                 android:layout_alignParentRight="true"
-                android:layout_marginTop="142dp"
+                android:layout_marginTop="60dp"
                 android:layout_marginEnd="92dp"
                 android:layout_marginRight="92dp"
                 android:background="@null"
@@ -158,7 +148,7 @@
             <Button
                 android:id="@+id/button_login"
                 android:layout_width="180dp"
-                android:layout_height="40dp"
+                android:layout_height="300dp"
                 android:layout_below="@+id/spinner_user"
                 android:layout_alignParentStart="true"
                 android:layout_alignParentLeft="true"
@@ -167,7 +157,7 @@
                 android:layout_alignParentBottom="true"
                 android:layout_marginStart="94dp"
                 android:layout_marginLeft="94dp"
-                android:layout_marginTop="205dp"
+                android:layout_marginTop="80dp"
                 android:layout_marginEnd="96dp"
                 android:layout_marginRight="96dp"
                 android:layout_marginBottom="136dp"

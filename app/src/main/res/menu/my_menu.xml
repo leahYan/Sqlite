@@ -12,4 +12,11 @@
         app:actionViewClass="androidx.appcompat.widget.SearchView"
         />
 
+    <item
+        android:id="@+id/senddata"
+        android:title="Send Data"
+        android:icon="@drawable/ic_delete"
+        app:showAsAction="never"/>
+
+
 </menu>
